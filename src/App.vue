@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1> {{ title }}</h1>
-    <p> {{ greeting() }}</p>
+    <ninjas></ninjas>
   </div>
 </template>
 
