@@ -43,8 +43,10 @@ export default {
 .user-collection {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
   width: 80%;
+
 
 }
   .user-card {
@@ -57,6 +59,14 @@ export default {
     padding: 30px 15px;
     border-radius: 6px;
     text-align: center;
+    box-shadow: lightgrey 0 4px;
+  }
+
+  .user-card:hover {
+    background-color: lightcoral;
+    color: white;
+    cursor: se-resize;
+    box-shadow: lightgrey 0 6px;
   }
 
   .user-content {
