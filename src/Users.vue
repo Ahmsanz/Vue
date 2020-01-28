@@ -1,6 +1,9 @@
 
 
 <template>
+  <div class="users-body">
+
+
   <div  class="user-collection">{{getUsers}}
   <div v-for="user in users" class="user-card">
     <div class="user-content">
@@ -8,6 +11,17 @@
         <p>{{ user.email }}</p>
     </div>
   </div>
+  </div>
+  <div>
+  {{getRefs()}}
+  <form v-on:submit = "addUser" class="formulario" >
+    <input type="text" name="username" value="" ref="username" placeholder="User Name">
+    <input type="text" name="email" value="" ref="email" placeholder="User Email">
+    <button>Add new user!</button>
+
+  </form>
+
+</div>
 </div>
 
 </template>
@@ -24,8 +38,26 @@ export default {
     }
   },
   methods: {
+    getRefs(){
+      console.log('eooo', this.$refs)
+    },
+    addUser(e){
+      e.preventDefault();
+      axios('https://jsonplaceholder.typicode.com/users', {
+        method: 'POST',
+        data: {
+          username: this.$refs.username.value,
+          email: this.$refs.email.value
+        },
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+        })
+        .then(res => console.log('adding user', res.data))
+        .catch(err => console.log ('oops, my bad', err))
 
-  },
+      }
+    },
   computed: {
     getUsers () {
       axios.get('https://jsonplaceholder.typicode.com/users')
@@ -40,6 +72,11 @@ export default {
 </script>
 
 <style>
+.users-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .user-collection {
   display: flex;
   flex-direction: row;
@@ -65,11 +102,49 @@ export default {
   .user-card:hover {
     background-color: lightcoral;
     color: white;
-    cursor: se-resize;
+    cursor: pointer;
     box-shadow: lightgrey 0 6px;
   }
 
   .user-content {
 
+  }
+
+  .formulario {
+    margin: 30px 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .formulario input {
+    margin: 10px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: solid green 2px;
+    width: 80%;
+  }
+
+  .formulario input:focus {
+    margin: 10px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: solid red 2px;
+  }
+
+  .formulario button {
+    background-color: lightgreen;
+    border-radius: 5px;
+    color: black;
+    padding: 5px 10px;
+  }
+  .formulario button:hover {
+    background-color: darkgreen;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 5px 15px;
   }
 </style>
