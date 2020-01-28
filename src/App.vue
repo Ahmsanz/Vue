@@ -6,8 +6,13 @@
 </template>
 
 <script>
-export default {
 
+import Ninjas from './Ninja.vue'
+
+export default {
+  components: {
+    'ninjas': Ninjas
+  },
   data () {
     return {
       title: 'Brand new Vue App'
