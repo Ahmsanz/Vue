@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <h1> {{ title }}</h1>
-    <ninjas></ninjas>
+    <h3>Users:</h3>
+    <users />
+    <h3>Comments</h3>
+    <comments />
   </div>
 </template>
 
@@ -10,12 +13,12 @@
 import Ninjas from './Ninja.vue'
 
 export default {
-  components: {
-    'ninjas': Ninjas
-  },
+  // components: {
+  //   'ninjas': Ninjas
+  // },
   data () {
     return {
-      title: 'Brand new Vue App'
+      title: 'Testing Vue-CLI'
     }
   },
   methods: {
