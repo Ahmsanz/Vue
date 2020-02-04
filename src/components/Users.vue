@@ -4,26 +4,31 @@
   <div class="users-body">
 
 
-  <div  class="user-collection">
-  <div v-for="user in users" class="user-card">
-    <div class="user-content">
-        <h4>{{ user.username }}</h4>
-        <p>{{ user.email }}</p>
-        <p v-show="user.show">{{user.name}}</p>
+    <div  class="user-collection">
+      <a v-for="user in users" v-on:click="deleteUser(user.id)">
+        <div class="user-card">
+          <div class="user-content">
+
+              <h4>{{ user.username }}</h4>
+              <p>{{ user.email }}</p>
+              <p v-show="user.show">{{user.name}}</p>
+
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div>
+
+      <form v-on:submit = "addUser" class="formulario" >
+        <input type="text" name="username" value="" ref="username" placeholder="User Name">
+        <input type="text" name="email" value="" ref="email" placeholder="User Email">
+        <button>Add new user!</button>
+
+      </form>
+
     </div>
   </div>
-  </div>
-  <div>
-
-  <form v-on:submit = "addUser" class="formulario" >
-    <input type="text" name="username" value="" ref="username" placeholder="User Name">
-    <input type="text" name="email" value="" ref="email" placeholder="User Email">
-    <button>Add new user!</button>
-
-  </form>
-
-</div>
-</div>
 
 </template>
 
@@ -55,6 +60,11 @@ export default {
         .then(res => console.log('adding user', res.data))
         .catch(err => console.log ('oops, my bad', err))
 
+      },
+      deleteUser(id){
+        axios.delete('https://jsonplaceholder.typicode.com/users/' + id)
+        .then(res => console.log('bye, bye, user', res.status))
+        .catch( err => console.log ("it's unbeatable", err))
       }
     },
   // computed: {
@@ -121,9 +131,6 @@ export default {
     box-shadow: lightgrey 0 6px;
   }
 
-  .user-content {
-
-  }
 
   .formulario {
     margin: 30px 10px;

@@ -12,7 +12,6 @@
 
 <script>
 
-import Ninjas from './Ninja.vue'
 
 export default {
 

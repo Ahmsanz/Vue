@@ -1,12 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Ninjas from './Ninja.vue'
-import Comments from './Comments.vue'
-import Users from './Users.vue'
-import Title from './Title.vue'
-import Footer from './Footer.vue'
-
-Vue.component('ninjas', Ninjas);
+import Comments from './components/Comments.vue'
+import Users from './components/Users.vue'
+import Title from './components/Title.vue'
+import Footer from './components/Footer.vue'
 
 Vue.component('comments', Comments);
 
