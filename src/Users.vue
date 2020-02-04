@@ -9,6 +9,7 @@
     <div class="user-content">
         <h4>{{ user.username }}</h4>
         <p>{{ user.email }}</p>
+        <p v-show="user.show">{{user.name}}</p>
     </div>
   </div>
   </div>
@@ -131,6 +132,8 @@ export default {
     border-top: none;
     border-right: none;
     border-bottom: solid red 2px;
+    width: 85%;
+    box-shadow: lightgrey 0 4px;
   }
 
   .formulario button {
