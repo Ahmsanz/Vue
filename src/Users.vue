@@ -4,7 +4,7 @@
   <div class="users-body">
 
 
-  <div  class="user-collection">{{getUsers}}
+  <div  class="user-collection">
   <div v-for="user in users" class="user-card">
     <div class="user-content">
         <h4>{{ user.username }}</h4>
@@ -14,7 +14,7 @@
   </div>
   </div>
   <div>
-  {{getRefs()}}
+
   <form v-on:submit = "addUser" class="formulario" >
     <input type="text" name="username" value="" ref="username" placeholder="User Name">
     <input type="text" name="email" value="" ref="email" placeholder="User Email">
@@ -39,9 +39,7 @@ export default {
     }
   },
   methods: {
-    getRefs(){
-      console.log('eooo', this.$refs)
-    },
+
     addUser(e){
       e.preventDefault();
       axios('https://jsonplaceholder.typicode.com/users', {
@@ -59,15 +57,31 @@ export default {
 
       }
     },
-  computed: {
-    getUsers () {
-      axios.get('https://jsonplaceholder.typicode.com/users')
-      .then(res => {
-        console.log(res)
-        this.users = res.data;
-      })
-      .catch(err => console.log('not getting those users', err))
-    }
+  // computed: {
+  //   getUsers () {
+  //     axios.get('https://jsonplaceholder.typicode.com/users')
+  //     .then(res => {
+  //       console.log(res)
+  //       this.users = res.data;
+  //     })
+  //     .catch(err => console.log('not getting those users', err))
+  //   }
+  // },
+  //lifecycle hooks
+
+  created(){
+
+    axios.get('https://jsonplaceholder.typicode.com/users')
+    .then(res => {
+      console.log('users ok', res.status);
+      this.users = res.data;
+    })
+    .catch(err => console.log('not getting those users', err))
+  },
+  mounted(){
+    //getting references in console
+      console.log('refs', this.$refs)
+
   }
 }
 </script>

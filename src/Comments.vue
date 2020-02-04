@@ -1,7 +1,7 @@
 
 
 <template>
-  <div  class="comments-collection">{{getComments}}
+  <div  class="comments-collection">
   <div v-for="comment in comments" class="comments-card">
     <div class="comments-content">
         <h4>{{ comment.id }}</h4>
@@ -32,16 +32,14 @@ export default {
     }
 
   },
-  computed: {
-    getComments () {
-      axios.get('https://jsonplaceholder.typicode.com/comments')
-      .then(res => {
-        console.log(res)
-        this.comments = res.data.slice(0, 12);
+  created(){
+    axios.get('https://jsonplaceholder.typicode.com/comments')
+    .then(res => {
+      console.log('comments ok', res.status);
+      this.comments = res.data.slice(0, 12);
 
-      })
-      .catch(err => console.log('not getting those comments', err))
-    }
+    })
+    .catch(err => console.log('not getting those comments', err))
   }
 }
 </script>
